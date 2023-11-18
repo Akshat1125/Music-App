@@ -63,7 +63,7 @@ masterPlay.addEventListener('click', () => {
 audioElement.addEventListener('timeupdate', ()=>{
     //update seekbar
     progress = parseInt((audioElement.currentTime/audioElement.duration)*100);
-    Timer.innerText=`${parseInt(audioElement.currentTime/60)}:${parseInt(audioElement.currentTime%60)}/${parseFloat(audioElement.duration/60).toFixed(2)}`;
+    Timer.innerText=`${parseInt(audioElement.currentTime/60)}:${parseInt(audioElement.currentTime%60)}/${parseInt(audioElement.duration/60)}:${parseInt(audioElement.duration%60)}`;
     myProgressBar.value = progress;
 })
 myProgressBar.addEventListener('change',()=>{
