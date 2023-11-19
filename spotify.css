@@ -84,11 +84,11 @@ nav ul li{
    justify-content: space-between;
    align-items: center;
    border-radius: 16px;
-   font-size: small;
+   font-size: 13px;
 }
 
 .Songitem .songName{
-    width:45%;
+    width:60%;
 }
 
 .Songitem .songItemPlay{

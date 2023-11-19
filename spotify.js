@@ -82,10 +82,33 @@ audioElement.addEventListener('timeupdate', ()=>{
     progress = parseInt((audioElement.currentTime/audioElement.duration)*100);
     Timer.innerText=`${parseInt(audioElement.currentTime/60)}:${parseInt(audioElement.currentTime%60)}/${parseInt(audioElement.duration/60)}:${parseInt(audioElement.duration%60)}`;
     myProgressBar.value = progress;
+    if(myProgressBar.value==100){
+        if(songIndex>=7)
+        songIndex=0;
+        else
+        songIndex += 1;
+        audioElement.src = `${songs[songIndex].filePath}`;
+        masterSongName.innerText = songs[songIndex].songName;
+              audioElement.currentTime = 0;
+              audioElement.play();
+              makeAllPlays();
+              Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+                 if(element.id==songIndex) {
+                    element.classList.remove('fa-play');
+                    element.classList.add('fa-pause');
+                 }
+              });
+              masterPlay.classList.remove('fa-play');
+              masterPlay.classList.add('fa-pause');
+              gif.style.opacity = 1;
+
+    }
 })
 myProgressBar.addEventListener('change',()=>{
     audioElement.currentTime = myProgressBar.value * audioElement.duration/100;
 })
+
+
 
 const makeAllPlays = ()=>{
     Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
