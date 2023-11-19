@@ -7,28 +7,44 @@ let gif = document.getElementById('gif');
 let masterSongName = document.getElementById('masterSongName');
 let songItems = Array.from(document.getElementsByClassName('Songitem'));
 let Timer=document.querySelector('#timer');
-console.log(audioElement.duration)
+let TimeStamp=document.querySelectorAll(".timestamp");
+
+console.log(TimeStamp)
 
 // Timer.innerText=`${audioElement.duration}/${progress}`;
-Timer.innerText=`0:00/5:09`;
+
 
 let songs=[
-    {songName: "aaoge jab tum", filePath:"06. Aaoge Jab Tum.mp3",coverPath:'logo.jpg'},
     {songName: "06. Aaoge Jab Tum", filePath:"06. Aaoge Jab Tum.mp3",coverPath:'logo.jpg'},
-    {songName: "yaad teri aayegi", filePath:'06. Aaoge Jab Tum.mp3',coverPath:'logo.jpg'},
-    {songName: "chahu ya na mai", filePath:'06. Aaoge Jab Tum.mp3',coverPath:'logo.jpg'},
-    {songName: "whistle baja", filePath:'06. Aaoge Jab Tum.mp3',coverPath:'logo.jpg'},
-    {songName: "helllo brother", filePath:'06. Aaoge Jab Tum.mp3',coverPath:'logo.jpg'},
-    {songName: "hagi maru", filePath:'06. Aaoge Jab Tum.mp3',coverPath:'logo.jpg'},
-    {songName: "yuvraj", filePath:'06. Aaoge Jab Tum.mp3',coverPath:'logo.jpg'},
-        ]
+    {songName: "Tumse Hi", filePath:"02  Tumse Hi .mp3",coverPath:'logo.jpg'},
+    {songName: "Tum Saath Ho", filePath:'03 Tum Saath Ho.mp3',coverPath:'logo.jpg'},
+    {songName: "Apna-Bana-le", filePath:'Apna-Bana-le.mp3',coverPath:'logo.jpg'},
+    {songName: "Hoshwalon Ko Khabar Kya - Sarfarosh", filePath:'Hoshwalon Ko Khabar Kya - Sarfarosh.mp3',coverPath:'logo.jpg'},
+    {songName: "Just Chill - Maine Pyaar Kyun Kiya", filePath:'Just Chill - Maine Pyaar Kyun Kiya .mp3',coverPath:'logo.jpg'},
+    {songName: "Pehli Nazar me", filePath:'Pehli Nazar me.mp3',coverPath:'logo.jpg'},
+    {songName: "Tu Hai To Mujhe Phir Aur Kya Chahiye", filePath:'Tu Hai To Mujhe Phir Aur Kya Chahiye.mp3',coverPath:'logo.jpg'},
+]
 // for(i=0;i<songs.length;i++){
-// console.log(songs[i].filePath);
-// }
-songItems.forEach((element, i) => {
+    // console.log(songs[i].filePath);
+    // }
+    Timer.innerText=`0:00/5:23`;
+    songItems.forEach((element, i) => {
          element.getElementsByTagName('img')[0].src = songs[i].coverPath;
          element.getElementsByClassName('songName')[0].innerText = songs[i].songName;
      })
+
+     TimeStamp.forEach((element, i) => {
+        let audio = new Audio(songs[i].filePath)
+        audio.setAttribute('preload', "metadata")
+        audio.addEventListener('loadedmetadata', () => {
+            // console.log(`Duration: ~ ${audio.duration.toFixed()}s`)
+            element.innerText = `${parseInt(audio.duration/60)}:${parseInt(audio.duration%60)}`;
+            // element.innerHTML =`${parseInt(audio.duration/60)}:${parseInt(audio.duration%60)}<i id='${i}'
+            // class="fa-solid fa-play songItemPlay"></i>`
+          })
+        // console.log(audio.duration)
+        // element.innerText = `${parseInt(songs.songName[i].duration/60)}:${parseInt(songs.songName[i].duration%60)}`;
+    })
 //audioElement.play();
 //handle play/pause click
 masterPlay.addEventListener('click', () => {
@@ -37,6 +53,7 @@ masterPlay.addEventListener('click', () => {
             makeAllPlays();
             console.log(songIndex)
             Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
+                console.log(element.id)
                 if(element.id==songIndex) {
                    element.classList.remove('fa-play');
                    element.classList.add('fa-pause');

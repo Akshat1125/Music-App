@@ -86,13 +86,22 @@ nav ul li{
    border-radius: 16px;
    font-size: small;
 }
+
+.Songitem .songName{
+    width:45%;
+}
+
+.Songitem .songItemPlay{
+    margin:4px;
+}
+
 .Songitem img{
     height: 32px;
     width:28px;
     margin: 0 15px;
 }
 .timestamp{
-    margin: 0 16px;
+    margin: 0 4px;
     cursor: pointer;
 }
 .timestamp i{
@@ -151,7 +160,6 @@ nav ul li{
         width:55%;
      }
      .Songitem>.songPlayList{
-        width:45%;
         display: flex;
         flex-direction: row;
      }
@@ -159,5 +167,13 @@ nav ul li{
         width:20%;
      }
 
-
+   .songInf{
+    width:20%;
+    height:auto;
+   }
+  }
+  @media only screen and (max-width: 400px){
+    .Songitem{
+        font-size: x-small;
+    }
   }
