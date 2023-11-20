@@ -178,6 +178,9 @@ nav ul li{
   }
   @media only screen and (max-width: 400px){
     .Songitem{
+        font-size:xx-small;
+    }
+    .masterSongName{
         font-size: x-small;
     }
   }
